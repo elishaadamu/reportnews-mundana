@@ -50,10 +50,11 @@
     <script src="./js/vendor/momentjs/moment.js"></script>
     <script src="./js/vendor/mustachejs/mustache.min.js"></script>
     <script src="./js/rest_functions.js"></script>
+    <script src="./js/latest-post.js"></script>
 
     {% for js in page.customjs %}
     <!-- Custom JavaScript files set in YAML front matter -->
-    <script async type="text/javascript" src="{{ js }}"></script>
+    <script async type="text/javascript" src=".{{ js }}"></script>
     {% endfor %}
     <script language="javascript" src="https://www.3blmedia.com/sites/all/modules/custom_modules/threebl_widgets/inc/widget_function.js"></script>
     <script type="text/javascript">init_widget_new("NDMzODUyNzZjOGI2MzljYjhkY2ZmZjM3YzMxNzhjMWU=","ZGV0YWlscw==");</script>

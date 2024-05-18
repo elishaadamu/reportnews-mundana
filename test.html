@@ -1,0 +1,56 @@
+---
+title: "Mundana Free Jekyll Theme"
+layout: default
+pagination:
+    enabled: true
+description: "A great Jekyll theme developed by Sal @wowthemesnet."
+---
+
+
+<body>
+    <header>
+        <h1>{{ site.title }}</h1>
+    </header>
+    <main>
+        <!-- Container for the posts -->
+        <div id="output"></div>
+    </main>
+    <footer>
+        <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</p>
+    </footer>
+    <script >
+        const apiUrl = 'https://back.3blmedia.com/rest/report-announcement/latest-reports?page=0';
+const outputElement = document.getElementById('output');
+
+fetch(apiUrl)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Clear the output element
+    outputElement.innerHTML = '';
+
+    // Display data in HTML elements
+    data.results.forEach(report => {
+      let reportElement = document.createElement('div');
+      reportElement.classList.add('report');
+      reportElement.innerHTML = `
+        <h2>${report["report-title"]}</h2>
+        <img src="${report["report-image"]}" alt="${report["report-title"]}" />
+        <p>${report["report-intro"]}</p>
+        <a href="https://back.3blmedia.com${report["url-alias"]}">Read More</a>
+      `;
+      outputElement.appendChild(reportElement);
+    });
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    outputElement.textContent = 'An error occurred while fetching the data.';
+  });
+
+    </script>
+</body>
+</html>
