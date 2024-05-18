@@ -5,32 +5,36 @@ pagination:
     enabled: true
 permalink: "/latest"
 ---
+<style>
+  #prev-button,
+#next-button {
+  padding: 8px 16px;
+  background-color: #03a87c;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-right: 10px;
+}
 
+#prev-button:disabled,
+#next-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+</style>
 
 <div class="container">
-    
-
-
-<div class="row mt-3">
-   
-    <div class="col-md-12 main-loop">
-        
-      
-           <main>
-        <!-- Container for the posts -->
-        <div id="output-latest"></div>
-    </main>
-       
-        
-        
-    </div>
-
-   
-
-
-    
- 
-    
-</div>
-
+  <div class="row mt-3">
+      <div class="col-md-12 main-loop">
+        <main>
+          <!-- Container for the posts -->
+          <div id="output-latest"></div>
+        </main>
+        <div id="output-latest-sidebar"></div>
+        <button id="prev-button">Previous</button>
+        <button id="next-button">Next</button>
+      </div>
+  </div>
 </div>
