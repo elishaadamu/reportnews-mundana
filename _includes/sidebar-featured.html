@@ -1,12 +1,20 @@
 <h4 class="font-weight-bold spanborder"><span>Latest Alerts</span></h4>
 <div class="sticky-top sticky-top-offset">
-    <div id="output-latest-sidebar" style="color: grey; font-size: medium;"></div>
+    <div id="output-latest-sidebar"></div>
 </div>  
 
 
 <script>
-    const apiUrl = 'https://back.3blmedia.com/rest/report-announcement/latest-reports?page=0';
+const apiUrl = 'https://back.3blmedia.com/rest/report-announcement/latest-reports?page=0';
 const outputElement = document.getElementById('output-latest-sidebar');
+
+// Function to truncate text
+function truncateText(text, maxLength) {
+  if (text.length <= maxLength) {
+    return text;
+  }
+  return text.slice(0, maxLength) + '...';
+}
 
 fetch(apiUrl)
   .then(response => {
@@ -19,25 +27,30 @@ fetch(apiUrl)
     // Clear the output element
     outputElement.innerHTML = '';
 
-    // Display data in HTML elements
-    data.results.forEach(report => {
+    // Display only the first 5 data in HTML elements
+    data.results.slice(0, 5).forEach(report => {
+      let truncatedTitle = truncateText(report["report-title"], 80); // Truncate title to 80 characters
+
       let reportElement = document.createElement('div');
       reportElement.classList.add('report');
       reportElement.innerHTML = `
-      
-      <ul class="list-featured">				
-        <li class="mb-4">
+        <ul class="list-featured" style="list-style-type: none !important;">
+          <li class="mb-4">
+            <a href="https://back.3blmedia.com${report["url-alias"]}">
+              <img src="${report["report-image"]}" alt="${report["report-title"]}" width="200px" height="auto">
+            </a>
+            <br>
+            <br>
             <span>
-                <h6 class="font-weight-bold">
-                    <a class="text-dark" href="https://back.3blmedia.com${report["url-alias"]}">${report["report-title"]}</a>
-                </h6>
+              <h6 class="font-weight-bold">
+                <a class="text-dark" href="https://back.3blmedia.com${report["url-alias"]}">${truncatedTitle}</a>
+              </h6>
             </span>
             <p style="color: grey; font-size: medium;">
-                ${report["published-date"]}
+              ${report["published-date"]}
             </p>
-
-        </li>        
-    </ul>
+          </li>
+        </ul>
       `;
       outputElement.appendChild(reportElement);
     });
@@ -47,4 +60,5 @@ fetch(apiUrl)
     outputElement.textContent = 'An error occurred while fetching the data.';
   });
 
+  
 </script>
