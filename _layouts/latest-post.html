@@ -1,0 +1,29 @@
+---
+layout: default
+permalink: http://127.0.0.1:4000/reportnews-mundana/reports/801946/reports801946report-baker-hughes-tapped-zero-carbon-sources-nearly-one-third-electricity-use-2023
+---
+
+<div id="report-content">
+  <h2 id="report-title"></h2>
+  <p id="report-intro"></p>
+  <img id="report-image" src="" alt="">
+  <div id="report-body"></div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const pathSegments = window.location.pathname.split('/');
+    const reportId = pathSegments[3]; // Assuming the structure /reports/{report_id}/{url_alias}
+    const report = JSON.parse(localStorage.getItem(`report_${reportId}`));
+
+    if (report) {
+      document.getElementById('report-title').textContent = report['report-title'];
+      document.getElementById('report-intro').textContent = report['report-intro'];
+      document.getElementById('report-image').src = report['report-image'];
+      document.getElementById('report-image').alt = report['report-title'];
+      document.getElementById('report-body').innerHTML = report['body'];
+    } else {
+      document.getElementById('report-content').textContent = 'Report not found.';
+    }
+  });
+</script>
