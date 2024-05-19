@@ -70,10 +70,22 @@
   .container .footer-row-2{
     margin-left: 50px;
   }
-  #back-button-down{
+  #back-button{
     margin-left: 270px !important;
   }
 }
+.nav-link {
+  font-size: 15px !important;
+}
+.nav-link.active {
+  text-decoration: underline;
+}
+.nav-link.active:hover {
+  text-decoration: none;
+
+}
+
+
 
 .pagination-container {
   display: flex;

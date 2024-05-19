@@ -1,6 +1,7 @@
 ---
 title: "Get Alerts Delivered Right to Your Inbox"
 permalink: "/signup.html"
+id: signup
 ---
 
 <p>Stay up-to-date on the latest CSR and sustainability news with Alerts.</p>

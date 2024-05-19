@@ -2,6 +2,7 @@
 layout: page-sidebar
 title: "Client Testimonials"
 permalink: "/testimonials.html"
+id: testimonials
 ---
 
 <table>

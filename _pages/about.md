@@ -3,6 +3,7 @@ title: "About Us"
 layout: page-sidebar
 permalink: "/about.html"
 comments: true
+id: about
 ---
 
 What is Alerts?
