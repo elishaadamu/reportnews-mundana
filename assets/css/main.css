@@ -70,8 +70,16 @@
   .container .footer-row-2{
     margin-left: 50px;
   }
+  #back-button-down{
+    margin-left: 270px !important;
+  }
 }
 
+.pagination-container {
+  display: flex;
+  justify-content: left;
+  margin-top: 20px;
+}
 
 .container .footer-row-1{
   font-size: medium;
@@ -110,7 +118,23 @@
   background-color: #ccc;
   cursor: not-allowed;
 }
-
+.back-button {
+      display: block;
+      width: 100px;
+      margin: 20px auto;
+      padding: 10px;
+      background-color: #03a87c;
+      color: #fff;
+      text-align: center;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-left: 20px;
+    }
+    .back-button:hover {
+      background-color: #048261;
+      color: white;
+    }
 :root {
   --blue: #7832e2;
   --indigo: #502c6c;

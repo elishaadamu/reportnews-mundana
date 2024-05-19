@@ -45,7 +45,16 @@ defaults:
       layout: post
       author: sal
       avatar: /assets/images/avatar1.jpg
-      
+
+  # all posts latest
+  - scope:
+      path: "_latestpost"
+    values:
+      layout: latest-post
+      author: sal
+      avatar: /assets/images/avatar1.jpg
+     
+
   # all pages
   - scope:
       path: "_pages"
