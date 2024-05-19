@@ -74,6 +74,13 @@
     margin-left: 270px !important;
   }
 }
+@media  (max-width: 1024px) {
+ .a2a_default_style{
+  display: flex;
+  flex-direction: row;
+  column-gap: 13px;
+ }
+}
 .nav-link {
   font-size: 15px !important;
 }

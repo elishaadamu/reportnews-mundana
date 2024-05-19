@@ -1,0 +1,69 @@
+---
+title: "Latest Report Alerts"
+layout: page
+pagination:
+    enabled: true
+permalink: "/latest-content"
+---
+<div id="post-content"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const postContent = document.getElementById('post-content');
+  const urlAlias = new URLSearchParams(window.location.search).get('alias');
+  
+  if (urlAlias) {
+    showPostContent(urlAlias);
+  }
+
+  function showPostContent(urlAlias) {
+    const report = JSON.parse(localStorage.getItem(`report_${urlAlias}`));
+    if (report) {
+      postContent.innerHTML = `
+        <div class="container">
+          <div class="jumbotron jumbotron-fluid mb-3 pl-0 pt-0 pb-0 bg-white position-relative">
+            <div class="h-100 tofront">
+              <div class="row justify-content-between">
+                <div class="col-md-7 pr-0 pr-md-4 pt-4 pb-4 align-self-center">
+                  <h3 class="display-4 mb-4 article-headline">${report["report-title"]}</h3>
+                  <p>Date Published: <strong>${report["published-date"]}</strong></p>
+                </div>
+                <div class="col-md-5 pr-0 align-self-center">
+                  <img class="rounded" src="${report["report-image"]}" alt="${report["report-title"]}">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-lg pt-4 pb-4">
+        <div class="row justify-content-center">
+          <div class="col-lg-2 pr-4 mb-4 col-md-12">
+            <div class="sticky-top sticky-top-offset text-center">
+              <div class="text-muted">Share this</div>
+              <br>
+              <div class="share d-inline-block">
+                <div class="a2a_kit a2a_kit_size_32 a2a_default_style" style="font-size: 20px;">
+                  <a href="https://twitter.com/reportalert/"><i style="font-size: 40px;" class="fab fa-twitter"></i></a>
+                  <br>
+                  <a href="https://www.linkedin.com/groups/145633/"><i style="font-size: 40px;" class="fab fa-linkedin"></i></a>
+                  <br>
+                  <a href="https://www.instagram.com/3blmedia/"><i style="font-size: 40px;" class="fab fa-instagram"></i></a>
+                  <br>
+                  <a href="https://www.facebook.com/3BLMedia/"><i style="font-size: 40px;" class="fab fa-facebook"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-8">
+            <article class="article-post">${report["body"]}</article>
+          </div>
+        </div>
+      </div>
+      `;
+    } else {
+      postContent.innerHTML = `<p>Report not found.</p>`;
+    }
+  }
+});
+
+</script>
