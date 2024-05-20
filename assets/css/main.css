@@ -80,6 +80,12 @@
   flex-direction: row;
   column-gap: 13px;
  }
+ .loader {
+  width: 50px !important;
+  height: 50px !important;
+  margin: -60px 0 0 -25px !important;
+
+}
 }
 .nav-link {
   font-size: 15px !important;
@@ -96,15 +102,15 @@
   position: fixed;
   left: 50%;
   top: 50%;
-  width: 50px;
-  height: 50px;
-  margin: 25px 0 0 -25px;
+  width: 70px;
+  height: 70px;
+  margin: -50px 0 0 -25px;
   border: 5px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 5px solid #3498db;
+  border-top: 5px solid #03a87c;
   animation: spin 1s linear infinite;
   z-index: 9999;
-  display: visible; /* Hide loader by default */
+  display: hidden; /* Hide loader by default */
 }
 
 @keyframes spin {
