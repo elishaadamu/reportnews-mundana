@@ -5,11 +5,16 @@ pagination:
     enabled: true
 permalink: "/sidebar-content"
 ---
+<div id="loader" class="loader"></div>
+
 <div id="post-content"></div>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const postContent = document.getElementById('post-content');
+  const loader = document.getElementById('loader');
+  loader.style.display = 'block'; // Show loader
+
   const urlAlias = new URLSearchParams(window.location.search).get('alias');
   
   if (urlAlias) {
@@ -36,34 +41,34 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
         <div class="container-lg pt-4 pb-4">
-        <div class="row justify-content-center">
-          <div class="col-lg-2 pr-4 mb-4 col-md-12">
-            <div class="sticky-top sticky-top-offset text-center">
-              <div class="text-muted">Share this</div>
-              <br>
-              <div class="share d-inline-block">
-                <div class="a2a_kit a2a_kit_size_32 a2a_default_style" style="font-size: 20px;">
-                  <a href="https://twitter.com/reportalert/"><i style="font-size: 40px;" class="fab fa-twitter"></i></a>
-                  <br>
-                  <a href="https://www.linkedin.com/groups/145633/"><i style="font-size: 40px;" class="fab fa-linkedin"></i></a>
-                  <br>
-                  <a href="https://www.instagram.com/3blmedia/"><i style="font-size: 40px;" class="fab fa-instagram"></i></a>
-                  <br>
-                  <a href="https://www.facebook.com/3BLMedia/"><i style="font-size: 40px;" class="fab fa-facebook"></i></a>
+          <div class="row justify-content-center">
+            <div class="col-lg-2 pr-4 mb-4 col-md-12">
+              <div class="sticky-top sticky-top-offset text-center">
+                <div class="text-muted">Share this</div>
+                <br>
+                <div class="share d-inline-block">
+                  <div class="a2a_kit a2a_kit_size_32 a2a_default_style" style="font-size: 20px;">
+                    <a href="https://twitter.com/reportalert/"><i style="font-size: 40px;" class="fab fa-twitter"></i></a>
+                    <br>
+                    <a href="https://www.linkedin.com/groups/145633/"><i style="font-size: 40px;" class="fab fa-linkedin"></i></a>
+                    <br>
+                    <a href="https://www.instagram.com/3blmedia/"><i style="font-size: 40px;" class="fab fa-instagram"></i></a>
+                    <br>
+                    <a href="https://www.facebook.com/3BLMedia/"><i style="font-size: 40px;" class="fab fa-facebook"></i></a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-12 col-lg-8">
-            <article class="article-post">${report["body"]}</article>
+            <div class="col-md-12 col-lg-8">
+              <article class="article-post">${report["body"]}</article>
+            </div>
           </div>
         </div>
-      </div>
       `;
     } else {
       postContent.innerHTML = `<p>Report not found.</p>`;
     }
+    loader.style.display = 'none'; // Hide loader
   }
 });
-
 </script>
