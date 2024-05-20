@@ -6,6 +6,8 @@ comments: true
 id: about
 ---
 
+<div id="loader" class="loader"></div>
+
 What is Alerts?
 Whether you just published your annual CSR report, have an upcoming event or finalized details on your latest sustainability initiative — it's time to make some noise for your good news!
 

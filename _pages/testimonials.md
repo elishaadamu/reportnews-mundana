@@ -4,6 +4,7 @@ title: "Client Testimonials"
 permalink: "/testimonials.html"
 id: testimonials
 ---
+<div id="loader" class="loader"></div>
 
 <table>
  <tbody><tr><td class="visible-xs" style="padding-bottom:10px;"><img src="{{site.baseurl}}/assets/images/avatar1.jpg" align="left" style="padding:0 20px 0 0; width:121px;"> </td></tr>

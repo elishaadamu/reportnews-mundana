@@ -18,8 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const urlAlias = new URLSearchParams(window.location.search).get('alias');
   
   if (urlAlias) {
-    showPostContent(urlAlias);
-  }
+        showPostContent(urlAlias);
+      } else {
+        loader.style.display = 'none'; // Hide loader if no alias
+        postContent.style.display = 'block'; // Show content even if no alias
+      }
 
   function showPostContent(urlAlias) {
     const report = JSON.parse(localStorage.getItem(`report_${urlAlias}`));

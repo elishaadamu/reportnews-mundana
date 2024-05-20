@@ -5,6 +5,7 @@ const nextButton = document.getElementById('next-button');
 let currentPage = sessionStorage.getItem('currentPage') ? parseInt(sessionStorage.getItem('currentPage')) : 0;
 const postsPerPage = 5;
 
+
 function fetchReports(page) {
   fetch(apiUrl + page)
     .then(response => {
@@ -80,3 +81,4 @@ nextButton.addEventListener('click', () => {
   sessionStorage.setItem('currentPage', currentPage);
   fetchReports(currentPage);
 });
+
