@@ -28,7 +28,7 @@ fetch(api)
     // Display only the first 5 data in HTML elements
     data.results.slice(0, 5).forEach(report => {
       let truncatedTitle = truncateText(report["report-title"], 80); // Truncate title to 80 characters
-      let truncatedIntro = truncateText(report["report-intro"], 300);
+      let truncatedIntro = truncateText(report["report-intro"], 200);
       const reportUrl = `{{site.baseurl}}/corporate-content.html?alias=${report["url-alias"]}`;
       let reportElement = document.createElement('div');
       reportElement.classList.add('report');

@@ -69,6 +69,9 @@ function fetchReports(page) {
                 <p class="excerpt">
                   ${report["report-intro"]}
                 </p>
+                <p class="excerpt">
+                  <a class="text-dark report-link" href="${reportUrl}" data-id="${report["report_id"]}">Read more... <i class="fab fa-readme"></i></a>
+                </p>
                 <small class="text-muted">
                   ${report["published-date"]}
                 </small>
