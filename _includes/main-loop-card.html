@@ -1,5 +1,8 @@
 <div id="output-corporate"></div>
 
+<a style="" href="{{site.baseurl}}/corporate.html">See More Alerts</a>
+<img style="margin-left: 10px;" src="assets/images/ra-alert-icon.png" alt="ra-alert-icon">
+
 <script>
 	const api = 'https://back.3blmedia.com/rest/report-announcement/latest-reports?page=1';
 const outputElementCorporate = document.getElementById('output-corporate');
@@ -26,6 +29,7 @@ fetch(api)
     // Display only the first 5 data in HTML elements
     data.results.slice(0, 5).forEach(report => {
       let truncatedTitle = truncateText(report["report-title"], 80); // Truncate title to 80 characters
+      let truncatedIntro = truncateText(report["report-intro"], 300);
       const reportUrl = `{{site.baseurl}}/corporate-content.html?alias=${report["url-alias"]}`;
       let reportElement = document.createElement('div');
       reportElement.classList.add('report');
@@ -36,7 +40,7 @@ fetch(api)
                   <a class="text-dark report-link" href="${reportUrl}" data-id="${report["report_id"]}">${truncatedTitle}</a>
                 </h2>
                 <p class="excerpt">
-                  ${report["report-intro"]}
+                    ${truncatedIntro}
                 </p>
                 <small class="text-muted">
                   ${report["published-date"]}
