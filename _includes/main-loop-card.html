@@ -1,27 +1,69 @@
-<div class="mb-5 d-flex justify-content-between main-loop-card">
-<div class="pr-3">
-	<h2 class="mb-1 h4 font-weight-bold">
-	<a class="text-dark" href="{{site.baseurl}}{{post.url}}">{{ post.title }}</a>
-	</h2>
-	<p class="excerpt">
-	   {{ post.excerpt  | strip_html | strip_newlines | truncate: 186}}
-	</p>
-	<small class="d-block text-muted">
-		In <span class="catlist">
-		{% for category in post.categories %}
-		<a class="text-capitalize text-muted smoothscroll" href="{{site.baseurl}}/categories.html#{{ category | downcase }}">{{ category }}</a><span class="sep">, </span>
-		{% endfor %}
-		</span>
-	</small>
-	<small class="text-muted">
-		{{ post.date | date: '%b %d, %Y' }}
-	</small>
-</div>
-{% if post.image %}
-	<div class="col-md-3 pr-0 text-right">
-	<a href="{{site.baseurl}}{{post.url}}">
-	<img class="w-100" src="{% if post.image contains "://" %}{{ post.image }}{% else %}{{ site.baseurl }}/{{ post.image }}{% endif %}" alt="{{ post.title }}">
-	</a>
-	</div>
-{% endif %}
-</div>
+<div id="output-corporate"></div>
+
+<script>
+	const api = 'https://back.3blmedia.com/rest/report-announcement/latest-reports?page=1';
+const outputElementCorporate = document.getElementById('output-corporate');
+
+// Function to truncate text
+function truncateText(text, maxLength) {
+  if (text.length <= maxLength) {
+    return text;
+  }
+  return text.slice(0, maxLength) + '...';
+} 
+
+fetch(api)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Clear the output element
+    outputElementCorporate.innerHTML = '';
+
+    // Display only the first 5 data in HTML elements
+    data.results.slice(0, 5).forEach(report => {
+      let truncatedTitle = truncateText(report["report-title"], 80); // Truncate title to 80 characters
+      const reportUrl = `{{site.baseurl}}/corporate-content.html?alias=${report["url-alias"]}`;
+      let reportElement = document.createElement('div');
+      reportElement.classList.add('report');
+      reportElement.innerHTML = `
+      <div class="mb-5 d-flex justify-content-between main-loop-card">
+              <div class="pr-3">
+                <h2 class="mb-1 h4 font-weight-bold">
+                  <a class="text-dark report-link" href="${reportUrl}" data-id="${report["report_id"]}">${truncatedTitle}</a>
+                </h2>
+                <p class="excerpt">
+                  ${report["report-intro"]}
+                </p>
+                <small class="text-muted">
+                  ${report["published-date"]}
+                </small>
+              </div>
+              <div class="col-md-3 pr-0 text-right">
+                <a href="${reportUrl}" class="report-link" data-id="${report["report_id"]}">
+                  <img src="${report["report-image"]}" alt="${report["report-title"]}">
+                </a>
+              </div>
+            </div>
+      `;
+      outputElementCorporate.appendChild(reportElement);
+      localStorage.setItem(`report_${report["url-alias"]}`, JSON.stringify(report));
+    });
+
+    document.querySelectorAll('.report-link').forEach(link => {
+      link.addEventListener('click', (event) => {
+        const urlAlias = event.target.closest('.report-link').getAttribute('data-alias');
+        localStorage.setItem('currentReportAlias', urlAlias);
+      });
+    });
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    outputElementCorporate.textContent = 'An error occurred while fetching the data.';
+  });
+
+	
+	</script>
