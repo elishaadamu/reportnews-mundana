@@ -7,7 +7,6 @@ pagination:
 permalink: "/corporate"
 ---
 
-<p>ServiceNow: 2 Million Reasons To Help the Nonprofit Sector Solve World Challenges</p>
 
 <!-- This script was left for a Reason -->
 <script>
@@ -55,7 +54,7 @@ function fetchReports(page) {
 
       if (data.results && data.results.length > 0) {
         data.results.slice(0, postsPerPage).forEach(report => {
-          const reportUrl = `${baseurl}/latest-content.html?alias=${report["url-alias"]}`;
+          const reportUrl = `${baseurl}/corporate-content.html?alias=${report["url-alias"]}`;
           let reportElement = document.createElement('div');
           reportElement.classList.add('report');
           reportElement.innerHTML = `
@@ -64,6 +63,9 @@ function fetchReports(page) {
                 <h2 class="mb-1 h4 font-weight-bold">
                   <a class="text-dark report-link" href="${reportUrl}" data-id="${report["report_id"]}">${report["report-title"]}</a>
                 </h2>
+                <p class="excerpt">
+                 Article from Frito-Lay North America |${report["published-date"]}
+                </p>
                 <p class="excerpt">
                   ${report["report-intro"]}
                 </p>

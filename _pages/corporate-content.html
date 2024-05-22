@@ -41,6 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <div class="col-md-5 pr-0 align-self-center">
                       <img class="rounded" src="${report["report-image"]}" alt="${report["report-title"]}">
+                      <small class="text-muted">
+                        caption
+                      </small>
+
                     </div>
                   </div>
                 </div>
@@ -66,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   </div>
                 </div>
                 <div class="col-md-12 col-lg-8">
+                <i class="fas fa-backward" style=" color: #03a87c !important; "></i>  <a class="text-dark report-link" style="font-weight: bold; color: #03a87c !important; font-size: 17px;" href="{{site.baseurl}}/corporate.html">Back headlines</a> 
                   <article class="article-post">${report["body"]}</article>
                 </div>
               </div>

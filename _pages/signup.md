@@ -4,6 +4,7 @@ permalink: "/signup.html"
 id: signup
 ---
 
+<div id="loader" class="loader"></div>
 
 <p>Stay up-to-date on the latest CSR and sustainability news with Alerts.</p>
 
