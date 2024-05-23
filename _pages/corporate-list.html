@@ -7,7 +7,6 @@ pagination:
 permalink: "/corporate"
 ---
 
-
 <!-- This script was left for a Reason -->
 <script>
     const baseurl = '{{ site.baseurl }}';
@@ -30,16 +29,13 @@ permalink: "/corporate"
   </div>
 </div>
 
-
-
 <script>
-    const apiUrl = 'https://back.3blmedia.com/rest/report-announcement/latest-reports?page=';
+const apiUrl = 'https://back.3blmedia.com/rest/report-announcement/latest-reports?page=';
 const outputElement = document.getElementById('output-corporate');
 const prevButton = document.getElementById('prev-button');
 const nextButton = document.getElementById('next-button');
 let currentPage = sessionStorage.getItem('currentPage') ? parseInt(sessionStorage.getItem('currentPage')) : 0;
 const postsPerPage = 5;
-
 
 function fetchReports(page) {
   fetch(apiUrl + page)
@@ -122,6 +118,4 @@ nextButton.addEventListener('click', () => {
   sessionStorage.setItem('currentPage', currentPage);
   fetchReports(currentPage);
 });
-
-
 </script>

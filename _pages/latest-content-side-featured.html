@@ -6,27 +6,30 @@ pagination:
 permalink: "/sidebar-content"
 ---
 
-
 <div id="post-content"></div>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const postContent = document.getElementById('post-content');
   const loader = document.getElementById('loader');
-  loader.style.display = 'block'; // Show loader
+  loader.style.display = 'block'; // Show loader while fetching data
 
+  // Get the URL alias from the query string
   const urlAlias = new URLSearchParams(window.location.search).get('alias');
   
+  // Check if urlAlias is present in the query string
   if (urlAlias) {
-        showPostContent(urlAlias);
-      } else {
-        loader.style.display = 'none'; // Hide loader if no alias
-        postContent.style.display = 'block'; // Show content even if no alias
-      }
+    showPostContent(urlAlias); // Display the post content if alias is present
+  } else {
+    loader.style.display = 'none'; // Hide loader if no alias is found
+    postContent.style.display = 'block'; // Ensure content block is displayed even if no alias
+  }
 
   function showPostContent(urlAlias) {
+    // Retrieve the report data from local storage
     const report = JSON.parse(localStorage.getItem(`report_${urlAlias}`));
     if (report) {
+      // Populate the HTML with the report content
       postContent.innerHTML = `
         <div class="container">
           <div class="jumbotron jumbotron-fluid mb-3 pl-0 pt-0 pb-0 bg-white position-relative">
@@ -69,9 +72,10 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `;
     } else {
+      // Display an error message if the report is not found
       postContent.innerHTML = `<p>Report not found.</p>`;
     }
-    loader.style.display = 'none'; // Hide loader
+    loader.style.display = 'none'; // Hide loader after content is loaded
   }
 });
 </script>
