@@ -64,6 +64,7 @@
   }
 }
 
+
 @media  (min-width: 1024px) {
   .checkbox-div{
       margin-left: -270px !important;
@@ -80,7 +81,7 @@
   }
 }
 @media  (max-width: 1024px) {
- .a2a_default_style{
+ a2a_default_style{
   display: flex;
   flex-direction: row;
   column-gap: 13px;
