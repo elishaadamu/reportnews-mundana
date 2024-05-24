@@ -110,7 +110,7 @@
 .sidebar-custom{
   background-color: rgb(246, 246, 246);
   border-radius: 5px;
-  padding: 20px 0px 20px 0px;
+  padding: 20px 0px 20px 20px;
 }
 .loader-overlay {
   position: fixed;
@@ -154,15 +154,18 @@
   margin-top: 20px;
 }
 
-.container .footer-row-1{
+ .footer-row-1 ul{
   font-size: medium;
+  display: flex;
+  flex-direction: row;
+  list-style-type: none !important;
+  text-decoration: none;
+  justify-content: space-evenly;
+  margin-left: -10%;
 }
 
-.container .footer-row-1 ul{
-  list-style-type: none !important;
-  text-decoration: underline;
-}
-.container .footer-row-2 ul{
+                  
+ .footer-row-2 ul{
   list-style-type: none !important;
   text-decoration: underline;
 }

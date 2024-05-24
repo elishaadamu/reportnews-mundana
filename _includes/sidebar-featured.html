@@ -1,15 +1,19 @@
 <div class="sidebar-custom">
   <h4 class="font-weight-bold spanborder"><span style="margin-left: 20px;">Latest Alerts</span></h4>
-<div class="sticky-top sticky-top-offset">
-    <div id="output-latest-sidebar"></div>
+  <div class="sticky-top sticky-top-offset">
+    <div id="output-latest-sidebar">
+      <ol class="list-featured" style="list-style-type: decimal;">
+        <!-- The list items will be appended here -->
+      </ol>
+    </div>
     <a style="margin-left: 40px;" href="{{site.baseurl}}/latest.html">See More Alerts</a>
     <img style="margin-left: 10px;" src="assets/images/ra-alert-icon.png" alt="ra-alert-icon">
-</div> 
-</div> 
+  </div> 
+</div>
 
 <script>
 const apiUrl = 'https://back.3blmedia.com/rest/report-announcement/latest-reports?page=0';
-const outputElement = document.getElementById('output-latest-sidebar');
+const outputElement = document.querySelector('#output-latest-sidebar ol');
 
 // Function to truncate text
 function truncateText(text, maxLength) {
@@ -34,25 +38,14 @@ fetch(apiUrl)
     data.results.slice(0, 5).forEach(report => {
       let truncatedTitle = truncateText(report["report-title"], 80); // Truncate title to 80 characters
       const reportUrl = `{{site.baseurl}}/latest-content.html?alias=${report["url-alias"]}`;
-      let reportElement = document.createElement('div');
-      reportElement.classList.add('report');
+      let reportElement = document.createElement('li');
+      reportElement.classList.add('mb-4');
       reportElement.innerHTML = `
-        <ul class="list-featured" style="list-style-type: none !important;">
-          <li class="mb-4">
-            <a href="${reportUrl}" class="report-link" data-alias="${report["url-alias"]}">
-              <img src="${report["client-logo"]}" alt="${report["report-title"]}" width="250px" height="auto">
-            </a>
-            <br><br>
-            <span>
-              <h6 class="font-weight-bold">
-                <a class="text-dark report-link" href="${reportUrl}" data-alias="${report["url-alias"]}">${truncatedTitle}</a>
-              </h6>
-            </span>
-            <p style="color: grey; font-size: medium;">
-              ${report["published-date"]}
-            </p>
-          </li>
-        </ul>
+        <span>
+          <h6 class="font-weight-bold">
+            <a class="text-dark report-link" href="${reportUrl}" data-alias="${report["url-alias"]}">${truncatedTitle}</a>
+          </h6>
+        </span>
       `;
       outputElement.appendChild(reportElement);
       localStorage.setItem(`report_${report["url-alias"]}`, JSON.stringify(report));
@@ -69,5 +62,4 @@ fetch(apiUrl)
     console.error('Error:', error);
     outputElement.textContent = 'An error occurred while fetching the data.';
   });
-
 </script>
